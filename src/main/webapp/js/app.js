@@ -14,7 +14,6 @@ define([ 'angular',
 		 'app/components/auth/auth-service',
 		 'app/components/auth/login-ctrl',
 		 'app/components/auth/logout-ctrl',
-		 'app/components/produto/produto-ctrl',
 		 'app/components/home/home-ctrl'
 
 ], function(angular, templateLayout, templateHeader, templateSidebar) {
