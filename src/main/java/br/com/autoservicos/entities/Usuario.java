@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
 
 @Entity
 @Table(name = "usuario")
@@ -23,7 +24,6 @@ public class Usuario implements Serializable {
 	@Column(name = "email")
 	private String email;
 
-	@JsonIgnore
 	@Column(name = "senha")
 	private String senha;
 

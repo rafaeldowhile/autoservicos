@@ -7,7 +7,7 @@ define(['app/components/controllers',
 	    .state('root.home', {
 	        url: '/home',
 	        views: {
-	        	'content@': {template: templateHome, controller: 'IndexCtrl'},
+	        	'content@': {template: templateHome, controller: 'HomeCtrl'},
 	        },
 	        data: {
 	        	authenticate: true
@@ -15,9 +15,7 @@ define(['app/components/controllers',
 	      });
 	}]);
 
-	controllers.controller('IndexCtrl', ['$scope', 'Restangular', function ($scope, Restangular) {
-
-		 $scope.eventos = Restangular.all('evento').getList();
+	controllers.controller('HomeCtrl', ['$scope', 'Restangular', function ($scope, Restangular) {
 
 	}]);
 

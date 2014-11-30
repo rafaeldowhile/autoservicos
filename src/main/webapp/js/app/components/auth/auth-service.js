@@ -27,6 +27,12 @@ define(['app/components/services'], function (services) {
 			$state.go('root.login');
 		};
 		
+		service.signin = function (user) {
+			Restangular.all('signin').post(user).then(function(user) {
+				service.login(user);
+			});
+		}
+		
 		return service;
 	});
 	

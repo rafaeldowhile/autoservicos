@@ -13,20 +13,23 @@ define([ 'angular',
 		 'app/components/services',
 		 'app/components/auth/auth-service',
 		 'app/components/auth/login-ctrl',
+		 'app/components/auth/signin-ctrl',
 		 'app/components/auth/logout-ctrl',
-		 'app/components/home/home-ctrl'
+		 'app/components/home/home-ctrl',
+		 'app/components/estabelecimento/estabelecimento-ctrl',
+		 'app/components/principal/principal-ctrl',
 
 ], function(angular, templateLayout, templateHeader, templateSidebar) {
 	'use strict';
 	var app = angular.module('autoservicos',['ui.router', 'restangular', 'LocalStorageModule', 'autoservicos.controllers', 'autoservicos.services']);
 
 	app.constant('appConfiguration', {
-		xAuthTokenHeaderName: 'x-auth-token'
+		xAuthTokenHeaderName: 'X-Auth-Token'
 	});
 
-	app.config(['$urlRouterProvider', '$httpProvider', '$stateProvider', 'localStorageServiceProvider', function($urlRouterProvider, $httpProvider, $stateProvider, localStorageServiceProvider) {
+	app.config(['$urlRouterProvider', '$httpProvider', '$stateProvider', 'localStorageServiceProvider', function($urlRouterProvider, $httpProvider, $stateProvider, localStorageServiceProvider, appConfiguration) {
 		localStorageServiceProvider.setPrefix('inv');
-		$urlRouterProvider.otherwise('/home');
+		$urlRouterProvider.otherwise('/');
 		$stateProvider.state('root', {
 			abstract: true,
 			url: '',
@@ -65,6 +68,19 @@ define([ 'angular',
 				}
 			}
 		});
+
+		/* Intercept http errors */
+		$httpProvider.interceptors.push(function ($rootScope, $q, $location, appConfiguration) {
+			return {
+			'request' : function(config) {
+					if ($rootScope.user)
+						config.headers[appConfiguration.xAuthTokenHeaderName] = $rootScope.user.token;
+					
+					return config || $q.when(config);
+				}
+			}
+		});
+		
 
 	}]);
 

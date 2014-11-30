@@ -10,12 +10,9 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.stereotype.Component;
-
 /*
  * Diminui as restrições de CORS para qualquer host conseguir acessar a API.
  */
-@Component
 public class CorsFilter implements Filter {
 
 	@Override
