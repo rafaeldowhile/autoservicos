@@ -43,7 +43,7 @@ define(['app/components/controllers',
 	  $scope.estabelecimentos = estabelecimentos;
   }]);
   
-  controllers.controller('EstabelecimentoDetalheCtrl', ['$scope', 'Restangular', 'estabelecimento', function ($scope, Restangular, estabelecimentos) {
+  controllers.controller('EstabelecimentoDetalheCtrl', ['$scope', 'Restangular', 'estabelecimento', function ($scope, Restangular, estabelecimento) {
 	  $scope.estabelecimento = estabelecimento;
   }]);
 
