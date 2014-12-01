@@ -6,7 +6,6 @@ define(['app/components/controllers',
 		.state('root.login', {
 			url: '/login',
 			views: {
-				'header@' : {},
 				'sidebar@':{},
 				'content@' : {template: templateLogin, controller: 'LoginController'},
 			}

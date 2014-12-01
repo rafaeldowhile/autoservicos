@@ -1,13 +1,80 @@
 <div class="col-md-10">
+	<div class="btn-group pull-right">
+		<a ui-sref="root.estabelecimento" class="btn btn-default form-control">Voltar</a>
+	</div>
+
 	<div class="page-header">
-		<h3>{{estabelecimento.id}} - {{estabelecimento.nome}}</h3>
-	</div>
-	<div class="btn-group">
-		<a ui-sref="root.estabelecimento" class="btn btn-primary form-control">Voltar</a>
-	</div>
-	<form class="form-horizontal">
-		<div class="form-group">
-			<input ng-model="estabelecimento.nome" type="text" class="form-control" />
+	  	<div ng-if="estabelecimento.id != null">
+			<h3>{{estabelecimento.id}} - {{estabelecimento.nome}}</h3>
 		</div>
+		<div ng-if="estabelecimento.id == null">
+			<h3>Novo Estabelecimento</h3>
+		</div>
+	</div>
+
+	<form class="form-horizontal col-lg-8" role="form" ng-submit="cadastrar()">
+		<fieldset>
+			<legend>Dados Estabelecimento</legend>
+			<div class="form-group">
+				<label for="nome" class="col-lg-2 control-label">Nome</label>
+				<div class="col-lg-10">
+					<input ng-model="estabelecimento.nome" id="nome" type="text" class="form-control" ng-disabled="estabelecimento.id != null">
+				</div>
+			</div>			
+		</fieldset>
+		<fieldset>
+			<legend>Contato</legend>
+			<div class="form-group">		
+				<label for="telefonePrincipal" class="col-lg-2 control-label">Telefone Principal</label>
+				<div class="col-lg-10">
+					<input ng-model="estabelecimento.telefone1" id="telefonePrincipal" type="text" class="form-control" ng-disabled="estabelecimento.id != null">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label for="telefoneOpcional" class="col-lg-2 control-label">Telefone Opcional</label>
+				<div class="col-lg-10">
+					<input ng-model="estabelecimento.telefone2" id="telefoneOpcional" type="text" class="form-control" ng-disabled="estabelecimento.id != null">
+				</div>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Endereço</legend>
+			<div class="form-group">
+				<label for="logradouro" class="col-lg-2 control-label">Logradouro</label>
+				<div class="col-lg-10">
+					<input ng-model="estabelecimento.endereco.logradouro" id="logradouro" type="text" class="form-control" ng-disabled="estabelecimento.id != null">
+				</div>
+			</div>
+			<div class="form-group">		
+				<label for="numero" class="col-lg-2 control-label">Número</label>
+				<div class="col-lg-3">
+					<input ng-model="estabelecimento.endereco.numero" id="numero" type="number" class="form-control" ng-disabled="estabelecimento.id != null">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="complemento" class="col-lg-2 control-label">Complemento</label>
+				<div class="col-lg-3">
+					<input ng-model="estabelecimento.endereco.complemento" id="complemento" type="number" class="form-control" ng-disabled="estabelecimento.id != null">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="bairro" class="col-lg-2 control-label">Bairro</label>
+				<div class="col-lg-10">
+					<input ng-model="estabelecimento.endereco.bairro" id="bairro" type="text" class="form-control" ng-disabled="estabelecimento.id != null">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="cidade" class="col-lg-2 control-label">Cidade</label>
+				<div class="col-lg-10">
+					<input ng-model="estabelecimento.endereco.cidade" id="cidade" type="text" class="form-control" ng-disabled="estabelecimento.id != null">
+				</div>
+			</div>
+		</fieldset>
+		
+		<div class="btn-group">
+			<button type="submit" class="btn btn-default">Cadastrar</button>
+		</div>	
+		<br/>
+		<br/>
 	</form>
 </div>

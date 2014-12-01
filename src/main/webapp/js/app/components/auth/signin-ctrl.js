@@ -6,7 +6,6 @@ define(['app/components/controllers',
 		.state('root.signin', {
 			url: '/registrar',
 			views: {
-				'header@' : {},
 				'sidebar@':{},
 				'content@' : {template: templateSignin, controller: 'SigninController'},
 			}

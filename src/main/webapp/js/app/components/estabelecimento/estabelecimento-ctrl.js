@@ -23,7 +23,7 @@ define(['app/components/controllers',
     
     $stateProvider
     .state('root.estabelecimento.detalhe', {
-      url: '/estabelecimentos/:id',
+      url: '/detalhe/:id',
       views: {
         'content@': {template: templateEstabelecimentoDetalhe, controller: 'EstabelecimentoDetalheCtrl'},
       },
@@ -33,7 +33,11 @@ define(['app/components/controllers',
       resolve: {
     	  estabelecimento: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
     		  // usuario/{id}/estabelecimentos
-    		  return Restangular.one('usuario').one('estabelecimentos', $stateParams.id).get();
+    		  if ($stateParams.id != null) {
+    			  return Restangular.one('usuario').one('estabelecimentos', $stateParams.id).get();
+    		  } else {
+    			  return Restangular.one('usuario').one('estabelecimentos');
+    		  }
     	  }]
       }
     });
@@ -45,6 +49,12 @@ define(['app/components/controllers',
   
   controllers.controller('EstabelecimentoDetalheCtrl', ['$scope', 'Restangular', 'estabelecimento', function ($scope, Restangular, estabelecimento) {
 	  $scope.estabelecimento = estabelecimento;
+	  
+	  $scope.cadastrar = function () {
+		  Restangular.one('estabelecimento').post($scope.estabelecimento).then(function(estabelecimento){
+			  $state.go('root.estabelecimento');  
+		  });
+	  }
   }]);
 
   

@@ -1,79 +1,32 @@
-<style>
-#sidebar.affix-top {
-	position: static;
-	margin-top: 30px;
-	width: 200px;
-}
-
-#sidebar.affix {
-	position: fixed;
-	top: 70px;
-	width: 200px;
-}
-body {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #FFF !important;
-}
-
-.form-signin {
-  max-width: 330px;
-  padding: 15px; 
-  margin: 0 auto;
-}
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
-  margin-bottom: 10px;
-}
-.form-signin .checkbox {
-  font-weight: normal;
-}
-.form-signin .form-control {
-  position: relative;
-  height: auto;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 10px;
-  font-size: 16px;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-</style>
-
-<form class="form-signin" role="form" ng-submit="login()">
-        <h2 class="form-signin-heading">Entre por aqui.</h2>
-        <label for="inputEmail" class="sr-only">E-mail</label>
-        <input ng-model="usuario.email" type="email" id="inputEmail" class="form-control" placeholder="E-mail: exemplo@invo.com.br" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input ng-model="usuario.senha" type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
-        <div></div>
-        <div class="checkbox">
-          <label>
-            <input ng-model="usuario.lembrar" type="checkbox" value="remember-me"> Lembrar-me
-          </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-</form>
-<footer id="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 text-center">
-                <p>Page © - 2014</p>
-                <p>Powered by <strong><a href="http://invo.com.br" target="_blank">invo</a></strong></p>
-            </div>
-        </div>
-    </div>
-</footer>
+<div class="row">
+	<div class="col-md-5 col-md-offset-3">
+	
+		<div class="page-header text-center" style="color: #729eed">
+			<h3>Entrar</h3>
+		</div>
+		
+		<form class="form-horizontal" role="form" ng-submit="login()">
+			
+			<div class="form-group">
+				<label for="email" class="col-lg-2 control-label">E-mail</label>
+				<div class="col-lg-10">
+					<input ng-model="usuario.email" id="email" type="email" class="form-control" placeholder="E-mail">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="senha" class="col-lg-2 control-label">Senha</label>
+				<div class="col-lg-10">
+					<input ng-model="usuario.senha" id="senha" type="password" class="form-control" placeholder="Senha">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+		      		<button type="submit" class="btn btn-default">Entrar</button>
+		    	</div>
+			</div>
+					
+		</form>
+	</div>
+</div>
