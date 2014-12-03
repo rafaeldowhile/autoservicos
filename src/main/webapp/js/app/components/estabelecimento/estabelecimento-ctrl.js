@@ -33,10 +33,10 @@ define(['app/components/controllers',
       resolve: {
     	  estabelecimento: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
     		  // usuario/{id}/estabelecimentos
-    		  if ($stateParams.id != null) {
+    		  if ($stateParams.id != '') {
     			  return Restangular.one('usuario').one('estabelecimentos', $stateParams.id).get();
     		  } else {
-    			  return Restangular.one('usuario').one('estabelecimentos');
+    			  return Restangular.one('estabelecimento');
     		  }
     	  }]
       }
@@ -47,12 +47,12 @@ define(['app/components/controllers',
 	  $scope.estabelecimentos = estabelecimentos;
   }]);
   
-  controllers.controller('EstabelecimentoDetalheCtrl', ['$scope', 'Restangular', 'estabelecimento', function ($scope, Restangular, estabelecimento) {
+  controllers.controller('EstabelecimentoDetalheCtrl', ['$scope', 'Restangular', 'estabelecimento', '$state', function ($scope, Restangular, estabelecimento, $state) {
 	  $scope.estabelecimento = estabelecimento;
 	  
 	  $scope.cadastrar = function () {
-		  Restangular.one('estabelecimento').post($scope.estabelecimento).then(function(estabelecimento){
-			  $state.go('root.estabelecimento');  
+		  estabelecimento.post().then(function(estabelecimento){
+			  $state.transitionTo('root.estabelecimento', null, {reload: true});
 		  });
 	  }
   }]);

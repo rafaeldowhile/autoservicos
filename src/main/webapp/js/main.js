@@ -8,10 +8,11 @@ requirejs.config({
 	  'angular-animate': 'lib/angular-animate',
 	  'angular-loading-bar': 'lib/loading-bar',
 	  'bootstrap': 'lib/bootstrap',
+	  'angular-ui': 'lib/angular-ui',
+	  'ui-bootstrap': 'lib/ui-bootstrap',
 	  'jquery': 'lib/jquery',
 	  'lodash': 'lib/lodash',
 	  'restangular': 'lib/restangular',
-	  'satellizer': 'lib/satellizer',
 	  'text': 'lib/text',
 	  'less': 'lib/less',
 	  'app': 'app',
@@ -27,10 +28,13 @@ requirejs.config({
 		deps: ['angular']
 	},
 	
+	'angular-ui': {
+		deps: ['angular']
+	},
+	
 	'angular-animate': {
 		deps: ['angular']
 	},
-
 
 	'angular-local-storage': {
 		deps: ['angular']
@@ -60,13 +64,13 @@ requirejs.config({
 		deps: ['angular']
 	},
 
-	'satellizer': {
-		deps: ['angular']
-	},
-
 	'less': {
 		deps: ['angular']
 	},
+	
+	'ui-bootstrap': {
+		deps: ['angular']
+	}
 
   }
 });

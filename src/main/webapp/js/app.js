@@ -6,8 +6,9 @@ define([ 'angular',
          'angular-ui-router',
          'angular-animate',
          'angular-loading-bar',
+         'angular-ui',
+         'ui-bootstrap',
          'restangular',
-         'satellizer',
          'text',
 
          'app/shared/filters',
@@ -23,7 +24,7 @@ define([ 'angular',
 
 ], function(angular, templateLayout, templateHeader, templateSidebar) {
 	'use strict';
-	var app = angular.module('autoservicos',['ui.router', 'restangular', 'LocalStorageModule', 'angular-loading-bar', 'ngAnimate', 'autoservicos.controllers', 'autoservicos.services']);
+	var app = angular.module('autoservicos',['ui', 'ui.router', 'ui.bootstrap', 'restangular', 'LocalStorageModule', 'angular-loading-bar', 'ngAnimate', 'autoservicos.controllers', 'autoservicos.services']);
 
 	app.constant('appConfiguration', {
 		xAuthTokenHeaderName: 'X-Auth-Token'
@@ -72,7 +73,7 @@ define([ 'angular',
 		});
 
 		/* Intercept http errors */
-		/*$httpProvider.interceptors.push(function ($rootScope, $q, $location, appConfiguration) {
+		$httpProvider.interceptors.push(function ($rootScope, $q, $location, appConfiguration) {
 			return {
 			'request' : function(config) {
 					if ($rootScope.user)
@@ -81,7 +82,7 @@ define([ 'angular',
 					return config || $q.when(config);
 				}
 			}
-		});*/
+		});
 		
 
 	}]);
@@ -95,12 +96,12 @@ define([ 'angular',
 
 		$rootScope.$on('$stateChangeStart', function(event, toState) {
 			if (toState.data !== undefined && toState.data.authenticate !== undefined) {
-				$log.info('Need to authenticate', toState);
-				$log.info('User authenticated?', $rootScope.isAuthenticated());
+//				$log.info('Need to authenticate', toState);
+//				$log.info('User authenticated?', $rootScope.isAuthenticated());
 				//appConfiguration.authenticationEnabled &&
 				if (toState.data.authenticate && !$rootScope.isAuthenticated()){
 					// User is not authenticated
-					$log.info('Setting desired state to ' + toState.name);
+//					$log.info('Setting desired state to ' + toState.name);
 					$rootScope.desiredToState = toState.name;
 					$state.transitionTo('root.login');
 					event.preventDefault();

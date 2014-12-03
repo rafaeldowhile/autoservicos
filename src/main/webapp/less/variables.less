@@ -6,7 +6,7 @@
 //== Colors
 //
 //## Gray and brand colors for use across Bootstrap.
-
+@blue:					 darken(#729eed, 0.5%);
 @gray-base:              #000;
 @gray-darker:            lighten(@gray-base, 13.5%); // #222
 @gray-dark:              lighten(@gray-base, 20%);   // #333
@@ -14,7 +14,7 @@
 @gray-light:             lighten(@gray-base, 46.7%); // #777
 @gray-lighter:           lighten(@gray-base, 93.5%); // #eee
 
-@brand-primary:         darken(#729eed, 0.5%);
+@brand-primary:         #729eed;
 @brand-success:         #5cb85c;
 @brand-info:            #5bc0de;
 @brand-warning:         #f0ad4e;
@@ -206,7 +206,7 @@
 //** Small `.form-control` height
 @input-height-small:             (floor(@font-size-small * @line-height-small) + (@padding-small-vertical * 2) + 2);
 
-@legend-color:                   @gray-dark;
+@legend-color:                   @blue;
 @legend-border-color:            #e5e5e5;
 
 //** Background color for textual input addons
