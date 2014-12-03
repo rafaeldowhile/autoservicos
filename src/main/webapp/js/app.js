@@ -4,6 +4,8 @@ define([ 'angular',
          'text!app/shared/sidebar/sidebar.html',
          'angular-local-storage',
          'angular-ui-router',
+         'angular-animate',
+         'angular-loading-bar',
          'restangular',
          'satellizer',
          'text',
@@ -21,7 +23,7 @@ define([ 'angular',
 
 ], function(angular, templateLayout, templateHeader, templateSidebar) {
 	'use strict';
-	var app = angular.module('autoservicos',['ui.router', 'restangular', 'LocalStorageModule', 'autoservicos.controllers', 'autoservicos.services']);
+	var app = angular.module('autoservicos',['ui.router', 'restangular', 'LocalStorageModule', 'angular-loading-bar', 'ngAnimate', 'autoservicos.controllers', 'autoservicos.services']);
 
 	app.constant('appConfiguration', {
 		xAuthTokenHeaderName: 'X-Auth-Token'
@@ -70,7 +72,7 @@ define([ 'angular',
 		});
 
 		/* Intercept http errors */
-		$httpProvider.interceptors.push(function ($rootScope, $q, $location, appConfiguration) {
+		/*$httpProvider.interceptors.push(function ($rootScope, $q, $location, appConfiguration) {
 			return {
 			'request' : function(config) {
 					if ($rootScope.user)
@@ -79,7 +81,7 @@ define([ 'angular',
 					return config || $q.when(config);
 				}
 			}
-		});
+		});*/
 		
 
 	}]);

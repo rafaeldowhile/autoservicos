@@ -5,6 +5,8 @@ requirejs.config({
 	  'angular-route': 'lib/angular-route',
 	  'angular-ui-router': 'lib/angular-ui-router',
 	  'angular-local-storage': 'lib/angular-local-storage',
+	  'angular-animate': 'lib/angular-animate',
+	  'angular-loading-bar': 'lib/loading-bar',
 	  'bootstrap': 'lib/bootstrap',
 	  'jquery': 'lib/jquery',
 	  'lodash': 'lib/lodash',
@@ -24,8 +26,17 @@ requirejs.config({
 	'angular-route': {
 		deps: ['angular']
 	},
+	
+	'angular-animate': {
+		deps: ['angular']
+	},
+
 
 	'angular-local-storage': {
+		deps: ['angular']
+	},
+	
+	'angular-loading-bar': {
 		deps: ['angular']
 	},
 
