@@ -2,14 +2,16 @@ requirejs.config({
   baseUrl: 'js',
   paths:{
 	  'angular': 'lib/angular',
-	  'angular-route': 'lib/angular-route',
-	  'angular-ui-router': 'lib/angular-ui-router',
 	  'angular-local-storage': 'lib/angular-local-storage',
 	  'angular-animate': 'lib/angular-animate',
+	  'angular-sanitize': 'lib/angular-sanitize',
 	  'angular-loading-bar': 'lib/loading-bar',
 	  'bootstrap': 'lib/bootstrap',
-	  'angular-ui': 'lib/angular-ui',
+	  'ui-router': 'lib/angular-ui-router',
 	  'ui-bootstrap': 'lib/ui-bootstrap',
+	  'ui-bootstrap-tpls': 'lib/ui-bootstrap-tpls',
+	  'ui-utils': 'lib/ui-utils',
+	  'ui-select': 'lib/select',
 	  'jquery': 'lib/jquery',
 	  'lodash': 'lib/lodash',
 	  'restangular': 'lib/restangular',
@@ -18,21 +20,18 @@ requirejs.config({
 	  'app': 'app',
 	  'partials': '../partials',
   },
+  
   shim:{
 	'angular': {
 		deps: ['jquery'],
 		exports: 'angular'
 	},
 
-	'angular-route': {
-		deps: ['angular']
-	},
-	
-	'angular-ui': {
-		deps: ['angular']
-	},
-	
 	'angular-animate': {
+		deps: ['angular']
+	},
+	
+	'angular-sanitize': {
 		deps: ['angular']
 	},
 
@@ -41,6 +40,14 @@ requirejs.config({
 	},
 	
 	'angular-loading-bar': {
+		deps: ['angular']
+	},
+	
+	'ui-bootstrap-tpls': {
+		deps: ['angular']
+	},
+	
+	'ui-select': {
 		deps: ['angular']
 	},
 
@@ -60,7 +67,7 @@ requirejs.config({
 		deps: ['jquery']
 	},
 
-	'angular-ui-router': {
+	'ui-router': {
 		deps: ['angular']
 	},
 
@@ -69,6 +76,10 @@ requirejs.config({
 	},
 	
 	'ui-bootstrap': {
+		deps: ['angular']
+	},
+	
+	'ui-utils': {
 		deps: ['angular']
 	}
 

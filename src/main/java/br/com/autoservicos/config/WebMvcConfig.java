@@ -2,23 +2,16 @@ package br.com.autoservicos.config;
 
 import java.util.List;
 
-import javax.xml.transform.Source;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.ResourceHttpMessageConverter;
-import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter;
-import org.springframework.http.converter.xml.SourceHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
 
 @Configuration
 @EnableWebMvc
@@ -27,17 +20,33 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
  
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        StringHttpMessageConverter stringConverter = new StringHttpMessageConverter();
+        converters.add(jacksonMessageConverter());
+        super.configureMessageConverters(converters);
+        
+        /*StringHttpMessageConverter stringConverter = new StringHttpMessageConverter();
         stringConverter.setWriteAcceptCharset(false);
         converters.add(new ByteArrayHttpMessageConverter());
         converters.add(stringConverter);
         converters.add(new ResourceHttpMessageConverter());
         converters.add(new SourceHttpMessageConverter<Source>());
         converters.add(new AllEncompassingFormHttpMessageConverter());
-        converters.add(jackson2Converter());
+        converters.add(jackson2Converter());*/
+    }
+    
+    @Bean
+    public MappingJackson2HttpMessageConverter jacksonMessageConverter(){
+        MappingJackson2HttpMessageConverter messageConverter = new MappingJackson2HttpMessageConverter();
+
+        ObjectMapper mapper = new ObjectMapper();
+        //Registering Hibernate4Module to support lazy objects
+        mapper.registerModule(new Hibernate4Module());
+
+        messageConverter.setObjectMapper(mapper);
+        return messageConverter;
+
     }
 
-    @Bean
+    /*@Bean
     public MappingJackson2HttpMessageConverter jackson2Converter() {
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
         converter.setObjectMapper(objectMapper());
@@ -46,9 +55,23 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public ObjectMapper objectMapper() {
-        ObjectMapper objectMapper = new ObjectMapper();
+    	HibernateAwareObjectMapper objectMapper = new HibernateAwareObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         return objectMapper;
+    }*/
+    
+    class HibernateAwareObjectMapper extends ObjectMapper {
+
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public HibernateAwareObjectMapper() {
+            registerModule(new Hibernate4Module());
+        }
     }
-	
+
+    
+    	
 }

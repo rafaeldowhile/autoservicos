@@ -3,13 +3,16 @@ define([ 'angular',
          'text!app/shared/header/header.html',
          'text!app/shared/sidebar/sidebar.html',
          'angular-local-storage',
-         'angular-ui-router',
          'angular-animate',
+         'angular-sanitize',
          'angular-loading-bar',
-         'angular-ui',
-         'ui-bootstrap',
          'restangular',
          'text',
+         'ui-bootstrap',
+         'ui-bootstrap-tpls',
+         'ui-router',
+         'ui-utils',
+         'ui-select',
 
          'app/shared/filters',
 		 'app/components/controllers',
@@ -24,7 +27,7 @@ define([ 'angular',
 
 ], function(angular, templateLayout, templateHeader, templateSidebar) {
 	'use strict';
-	var app = angular.module('autoservicos',['ui', 'ui.router', 'ui.bootstrap', 'restangular', 'LocalStorageModule', 'angular-loading-bar', 'ngAnimate', 'autoservicos.controllers', 'autoservicos.services']);
+	var app = angular.module('autoservicos',['ui.router', 'ui.bootstrap', 'ui.bootstrap.tabs', 'ui.mask', 'ui.select', 'restangular', 'LocalStorageModule', 'angular-loading-bar', 'ngAnimate', 'ngSanitize', 'autoservicos.controllers', 'autoservicos.services']);
 
 	app.constant('appConfiguration', {
 		xAuthTokenHeaderName: 'X-Auth-Token'

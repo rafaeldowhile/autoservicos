@@ -8,22 +8,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import br.com.autoservicos.entities.Estabelecimento;
-import br.com.autoservicos.repositories.EstabelecimentoRespository;
+import br.com.autoservicos.repositories.EstabelecimentoRepository;
 
 @RestController
 @RequestMapping("/estabelecimento")
 public class EstabelecimentoRest extends BaseRest {
 	
 	@Autowired
-	private EstabelecimentoRespository estabelecimentoRepo;
+	private EstabelecimentoRepository estabelecimentoRepo;
 
 
+	@JsonView(Estabelecimento.class)
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public Estabelecimento criar(@RequestBody Estabelecimento estabelecimento) {
 		estabelecimento.setUsuario(getUser());
-		estabelecimentoRepo.save(estabelecimento);
+		estabelecimento = estabelecimentoRepo.save(estabelecimento);
 		return estabelecimento;
 	}
 }

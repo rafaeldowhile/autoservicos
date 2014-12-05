@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.autoservicos.config.security.SecurityUser;
 import br.com.autoservicos.entities.Estabelecimento;
-import br.com.autoservicos.repositories.EstabelecimentoRespository;
+import br.com.autoservicos.repositories.EstabelecimentoRepository;
 
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioRest {
 	
 	@Autowired
-	private EstabelecimentoRespository estabelecimentoRepo;
+	private EstabelecimentoRepository estabelecimentoRepo;
 
 	@RequestMapping(value="/estabelecimentos", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
@@ -39,8 +39,7 @@ public class UsuarioRest {
 	@RequestMapping(value="/estabelecimentos/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public Estabelecimento estabelecimento(@PathVariable Long id, HttpServletRequest req) {
-		Estabelecimento estabelecimento = estabelecimentoRepo.findOne(id);
-		estabelecimento.getServicos();
+		Estabelecimento estabelecimento = estabelecimentoRepo.buscarInformacoesCadastrais(id);
 		return estabelecimento;
 		
 	}

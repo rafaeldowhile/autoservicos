@@ -38,6 +38,10 @@ define(['app/components/controllers',
     		  } else {
     			  return Restangular.one('estabelecimento');
     		  }
+    	  }],
+    	  
+    	  servicos: ['Restangular', function(Restangular) {
+    		  return Restangular.all('servico').getList();
     	  }]
       }
     });
@@ -47,9 +51,10 @@ define(['app/components/controllers',
 	  $scope.estabelecimentos = estabelecimentos;
   }]);
   
-  controllers.controller('EstabelecimentoDetalheCtrl', ['$scope', 'Restangular', 'estabelecimento', '$state', function ($scope, Restangular, estabelecimento, $state) {
+  controllers.controller('EstabelecimentoDetalheCtrl', ['$scope', 'Restangular', 'estabelecimento', 'servicos', '$state', function ($scope, Restangular, estabelecimento, servicos, $state) {
 	  $scope.estabelecimento = estabelecimento;
-	  
+	  $scope.servicos = servicos;
+	  $scope.servico = {};
 	  $scope.cadastrar = function () {
 		  estabelecimento.post().then(function(estabelecimento){
 			  $state.transitionTo('root.estabelecimento', null, {reload: true});

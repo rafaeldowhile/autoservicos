@@ -23,6 +23,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "estabelecimento")
 public class Estabelecimento implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,7 +45,7 @@ public class Estabelecimento implements Serializable {
 	@Column(name = "email")
 	private String email;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "estabelecimento_servico", joinColumns = { @JoinColumn(name = "id_estabelecimento") }, inverseJoinColumns = { @JoinColumn(name = "id_servico") })
 	private List<Servico> servicos;
 
@@ -48,9 +53,9 @@ public class Estabelecimento implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
-
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_endereco")
+	
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_endereco", insertable = true, updatable = true)
 	private Endereco endereco;
 
 	public Long getId() {
