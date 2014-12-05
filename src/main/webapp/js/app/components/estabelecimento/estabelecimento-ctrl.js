@@ -55,6 +55,7 @@ define(['app/components/controllers',
 	  $scope.estabelecimento = estabelecimento;
 	  $scope.servicos = servicos;
 	  $scope.servico = {};
+	  ;
 	  $scope.cadastrar = function () {
 		  estabelecimento.post().then(function(estabelecimento){
 			  $state.transitionTo('root.estabelecimento', null, {reload: true});
