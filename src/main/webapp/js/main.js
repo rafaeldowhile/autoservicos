@@ -20,6 +20,8 @@ requirejs.config({
 	  'less': 'lib/less',
 	  'app': 'app',
 	  'partials': '../partials',
+	  'PhoneNumber': 'lib/PhoneNumber',
+	  'PhoneNumberMetaData': 'lib/PhoneNumberMetaData',
   },
   
   shim:{
@@ -86,6 +88,10 @@ requirejs.config({
 	
 	'ngToast': {
 		deps: ['angular']
+	},
+	
+	'PhoneNumber': {
+		deps: ['PhoneNumberMetaData']
 	}
 
   }

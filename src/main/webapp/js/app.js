@@ -14,8 +14,10 @@ define([ 'angular',
          'ui-router',
          'ui-utils',
          'ui-select',
+         'PhoneNumber',
 
          'app/shared/filters',
+         'app/shared/filters/phone',
 		 'app/components/controllers',
 		 'app/components/services',
 		 'app/components/auth/auth-service',
@@ -25,12 +27,14 @@ define([ 'angular',
 		 'app/components/home/home-ctrl',
 		 'app/components/estabelecimento/estabelecimento-ctrl',
 		 'app/components/principal/principal-ctrl',
+		 'app/components/principal/principal-visualizar-ctrl',
 
 ], function(angular, templateLayout, templateHeader, templateSidebar) {
 	'use strict';
 	var app = angular.module('autoservicos',['ui.router', 'ui.bootstrap', 'ui.bootstrap.tabs', 'ui.mask', 'ui.select', 
                                          	'restangular', 'LocalStorageModule', 'chieffancypants.loadingBar', 
-                                         	'ngAnimate', 'ngSanitize', 'ngToast', 'autoservicos.controllers', 'autoservicos.services']);
+                                         	'ngAnimate', 'ngSanitize', 'ngToast', 'autoservicos.controllers', 
+                                         	'autoservicos.services', 'autoservicos.filters']);
 
 	app.constant('appConfiguration', {
 		xAuthTokenHeaderName: 'X-Auth-Token'

@@ -30,13 +30,19 @@
 		    </div>
 			<div class="col-lg-10">
 				<div ng-repeat="estabelecimento in estabelecimentos" class="col-lg-4">
-					<div class="header text-center">
+					<div class="panel panel-default">
+					<div class="panel-heading text-center">
 						<a ui-sref="root.principal.visualizar({id: estabelecimento.id})"><h4>{{estabelecimento.nome}}</h4></a>
 					</div>
-					<ul class="list-group text-center" style="height: 124px; overflow-y: scroll;">
+					<div class="panel-body">
+					<ul class="list-group text-center" style="height: 150px; overflow-y: scroll;">
 						<li ng-repeat="servico in estabelecimento.servicos" class="list-group-item">{{servico.nome}}</li>
 					</ul>
+					</div>
+					<div class="panel-footer">
 					<button ui-sref="root.principal.visualizar({id: estabelecimento.id})" type="button" class="btn btn-default btn-block">Visualizar</button>
+					</div>
+					</div>
 				</div>
 			</div>
 		</div><!-- col-lg-10 -->
