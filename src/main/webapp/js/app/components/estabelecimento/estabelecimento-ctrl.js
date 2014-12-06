@@ -34,35 +34,78 @@ define(['app/components/controllers',
     	  estabelecimento: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
     		  // usuario/{id}/estabelecimentos
     		  if ($stateParams.id != '') {
-    			  return Restangular.one('usuario').one('estabelecimentos', $stateParams.id).get();
+    			  return Restangular.one('estabelecimento', $stateParams.id).get();
     		  } else {
     			  return Restangular.one('estabelecimento');
     		  }
     	  }],
     	  
     	  servicos: ['Restangular', function(Restangular) {
-    		  return Restangular.all('servico').getList();
+    		  return angular.forEach(Restangular.all('servico').getList(), function(value) {
+    			  console.log(value);
+    		  });
     	  }]
       }
     });
+
   }]);
 
-  controllers.controller('EstabelecimentoCtrl', ['$scope', 'Restangular', 'estabelecimentos', function ($scope, Restangular, estabelecimentos) {
+  controllers.controller('EstabelecimentoCtrl', ['$scope', '$state', 'Restangular', 'estabelecimentos', '$modal', function ($scope, $state, Restangular, estabelecimentos, $modal) {
 	  $scope.estabelecimentos = estabelecimentos;
+	  
+	  $scope.deletar = function(id) {
+		    var modalInstance = $modal.open({
+		      templateUrl: 'deletar.html',
+		      controller: 'EstabelecimentoDeletarCtrl',
+		      size: 'sm',
+		      resolve: {
+		        estabelecimento: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
+	    			  return Restangular.one('estabelecimento', id).get();
+		    	  }]
+		      }
+		    });
+		    
+		  };
   }]);
   
   controllers.controller('EstabelecimentoDetalheCtrl', ['$scope', 'Restangular', 'estabelecimento', 'servicos', '$state', function ($scope, Restangular, estabelecimento, servicos, $state) {
 	  $scope.estabelecimento = estabelecimento;
 	  $scope.servicos = servicos;
+	  
 	  $scope.servico = {};
-	  ;
-	  $scope.cadastrar = function () {
-		  estabelecimento.post().then(function(estabelecimento){
-			  $state.transitionTo('root.estabelecimento', null, {reload: true});
-		  });
-	  }
+	  $scope.adicionar = function() {
+		  var estabelecimento = {id: $scope.servico.selected.id, nome: $scope.servico.selected.nome};
+		  $scope.estabelecimento.servicos.push(estabelecimento);
+		  $scope.servico = {};
+	  };
+	  
+	  $scope.salvar = function () {
+		  if (!estabelecimento.id) {
+			  estabelecimento.post().then(function(estabelecimento){
+				  $state.transitionTo('root.estabelecimento', null, {reload: true});
+			  });  
+		  } else {
+			  estabelecimento.put().then(function(){
+				  $state.transitionTo('root.estabelecimento', null, {reload: true});
+			  });			  
+		  }
+	  };
   }]);
 
-  
+  controllers.controller('EstabelecimentoDeletarCtrl', ['$scope', '$state', '$modalInstance', 'estabelecimento', function ($scope, $state, $modalInstance, estabelecimento) {
+	
+	  $scope.confirmar = function () {
+		  estabelecimento.remove().then(function() {
+			  $state.forceReload();
+		  });
+		  
+		  $state.forceReload();
+		  $modalInstance.close();
+	  };
+
+	  $scope.cancelar = function () {
+	    $modalInstance.dismiss('cancel');
+	  };
+  }]);
 
 });

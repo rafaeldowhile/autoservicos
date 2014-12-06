@@ -13,12 +13,16 @@ define(['app/components/controllers',
       data: {
         authenticate: false
       },
+      resolve: {
+    	  estabelecimentos: ['Restangular', function (Restangular) {
+    		 return Restangular.one('public').getList('estabelecimento'); 
+    	  }],
+      }
     });
   }]);
 
-  controllers.controller('PrincipalCtrl', ['$scope', 'Restangular', function ($scope, Restangular) {
-
+  controllers.controller('PrincipalCtrl', ['$scope', 'Restangular', 'estabelecimentos', function ($scope, Restangular, estabelecimentos) {
+	  $scope.estabelecimentos = estabelecimentos;
   }]);
-
 
 });

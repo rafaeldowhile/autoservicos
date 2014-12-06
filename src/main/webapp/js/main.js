@@ -14,6 +14,7 @@ requirejs.config({
 	  'ui-select': 'lib/select',
 	  'jquery': 'lib/jquery',
 	  'lodash': 'lib/lodash',
+	  'ngToast': 'lib/ngToast',
 	  'restangular': 'lib/restangular',
 	  'text': 'lib/text',
 	  'less': 'lib/less',
@@ -80,6 +81,10 @@ requirejs.config({
 	},
 	
 	'ui-utils': {
+		deps: ['angular']
+	},
+	
+	'ngToast': {
 		deps: ['angular']
 	}
 

@@ -34,17 +34,21 @@ public class LoginRest {
 	
 	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public AuthenticationToken autenticar(@RequestBody Usuario usuario, HttpServletRequest req) {
+	public AuthenticationToken autenticar(@RequestBody Usuario usuario, HttpServletRequest req) throws Exception {
+
+		try {
+			final UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(usuario.getEmail(), usuario.getSenha());
+			
+			Authentication auth = this.authManager.authenticate(token);
+			
+			SecurityContextHolder.getContext().setAuthentication(auth);
 		
-		final UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(usuario.getEmail(), usuario.getSenha());
-		
-		Authentication auth = this.authManager.authenticate(token);
-		
-		SecurityContextHolder.getContext().setAuthentication(auth);
-	
-		final SecurityUser user = (SecurityUser) userService.loadUserByUsername(usuario.getEmail());
-		
-		return new AuthenticationToken(user.getId(), user.getEmail(), user.getNome(), TokenUtils.createToken(user));
+			final SecurityUser user = (SecurityUser) userService.loadUserByUsername(usuario.getEmail());
+			
+			return new AuthenticationToken(user.getId(), user.getEmail(), user.getNome(), TokenUtils.createToken(user));
+		} catch (Exception e) {
+			throw new Exception("Credenciais inválidas.");
+		}
 	}
 	
 	

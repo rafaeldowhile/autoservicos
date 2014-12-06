@@ -29,59 +29,14 @@
 				</div>		    
 		    </div>
 			<div class="col-lg-10">
-				<div class="col-lg-4">
+				<div ng-repeat="estabelecimento in estabelecimentos" class="col-lg-4">
 					<div class="header text-center">
-						<a href=""><h4>Estabelecimento 1</h4></a>
+						<a ui-sref="root.principal.visualizar({id: estabelecimento.id})"><h4>{{estabelecimento.nome}}</h4></a>
 					</div>
-					<ul class="list-group text-center"
-						style="height: 124px; overflow-y: scroll;">
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
+					<ul class="list-group text-center" style="height: 124px; overflow-y: scroll;">
+						<li ng-repeat="servico in estabelecimento.servicos" class="list-group-item">{{servico.nome}}</li>
 					</ul>
-					<input type="button" class="btn btn-primary btn-block" value="Visualizar" />
-				</div>
-				<div class="col-lg-4">
-					<div class="header text-center">
-						<a href=""><h4>Estabelecimento 2</h4></a>
-					</div>
-					<ul class="list-group text-center"
-						style="height: 124px; overflow-y: scroll;">
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
-					</ul>
-					<input type="button" class="btn btn-primary btn-block" value="Visualizar" />
-				</div>
-				<div class="col-lg-4">
-					<div class="header text-center">
-						<a href=""><h4>Estabelecimento 3</h4></a>
-					</div>
-					<ul class="list-group text-center"
-						style="height: 124px; overflow-y: scroll;">
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
-						<li class="list-group-item">teste</li>
-					</ul>
-					<input type="button" class="btn btn-primary btn-block" value="Visualizar" />
+					<button ui-sref="root.principal.visualizar({id: estabelecimento.id})" type="button" class="btn btn-default btn-block">Visualizar</button>
 				</div>
 			</div>
 		</div><!-- col-lg-10 -->

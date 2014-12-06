@@ -16,7 +16,8 @@ define(['app/components/controllers',
 		$rootScope.$state = $state;
 		$scope.login = function () {
 			AuthService.login($scope.usuario); 
-		}
+		};
+		
 	});
 	
 });

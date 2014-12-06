@@ -8,6 +8,7 @@ define([ 'angular',
          'angular-loading-bar',
          'restangular',
          'text',
+         'ngToast',
          'ui-bootstrap',
          'ui-bootstrap-tpls',
          'ui-router',
@@ -27,13 +28,25 @@ define([ 'angular',
 
 ], function(angular, templateLayout, templateHeader, templateSidebar) {
 	'use strict';
-	var app = angular.module('autoservicos',['ui.router', 'ui.bootstrap', 'ui.bootstrap.tabs', 'ui.mask', 'ui.select', 'restangular', 'LocalStorageModule', 'angular-loading-bar', 'ngAnimate', 'ngSanitize', 'autoservicos.controllers', 'autoservicos.services']);
+	var app = angular.module('autoservicos',['ui.router', 'ui.bootstrap', 'ui.bootstrap.tabs', 'ui.mask', 'ui.select', 
+                                         	'restangular', 'LocalStorageModule', 'chieffancypants.loadingBar', 
+                                         	'ngAnimate', 'ngSanitize', 'ngToast', 'autoservicos.controllers', 'autoservicos.services']);
 
 	app.constant('appConfiguration', {
 		xAuthTokenHeaderName: 'X-Auth-Token'
 	});
 
-	app.config(['$urlRouterProvider', '$httpProvider', '$stateProvider', 'localStorageServiceProvider', function($urlRouterProvider, $httpProvider, $stateProvider, localStorageServiceProvider, appConfiguration) {
+	app.config(['$urlRouterProvider', '$httpProvider', '$stateProvider', 'localStorageServiceProvider', '$provide', function($urlRouterProvider, $httpProvider, $stateProvider, localStorageServiceProvider, $provide, appConfiguration) {
+		$provide.decorator('$state', function($delegate, $stateParams) {
+	        $delegate.forceReload = function() {
+	            return $delegate.go($delegate.current, $stateParams, {
+	                reload: true,
+	                inherit: false,
+	                notify: true
+	            });
+	        };
+	        return $delegate;
+	    });
 		localStorageServiceProvider.setPrefix('inv');
 		$urlRouterProvider.otherwise('/');
 		$stateProvider.state('root', {
@@ -46,44 +59,26 @@ define([ 'angular',
 		});
 
 		/* Intercept http errors */
-		$httpProvider.interceptors.push(function ($rootScope, $q, $location) {
-			return {
-			'reponse' : function(response) {
-					function success(response) {
-						return response;
-					}
-
-					function error(response) {
-						var status = response.status;
-						var config = response.config;
-						var method = config.method;
-						var url = config.url;
-
-						if (status === 401) {
-							$location.path('/login');
-						} else {
-							$rootScope.error = method + ' on ' + url + ' failed with status ' + status;
-						}
-
-						return $q.reject(response);
-					}
-
-					return function (promise) {
-							return promise.then(success, error);
-					}
-				}
-			}
-		});
-
-		/* Intercept http errors */
-		$httpProvider.interceptors.push(function ($rootScope, $q, $location, appConfiguration) {
+		$httpProvider.interceptors.push(function ($rootScope, $q, $location, appConfiguration, ngToast) {
 			return {
 			'request' : function(config) {
-					if ($rootScope.user)
+					if ($rootScope.user) {
 						config.headers[appConfiguration.xAuthTokenHeaderName] = $rootScope.user.token;
+					}
 					
 					return config || $q.when(config);
-				}
+				},
+				
+			'responseError' : function (response) {
+				console.log(response);
+				ngToast.create({
+					content: response.data.mensagemErro,
+					class: 'danger',
+					});
+
+				return $q.reject(response);
+
+			}
 			}
 		});
 		

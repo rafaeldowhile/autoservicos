@@ -2,41 +2,16 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="css/bootstrap.css" />
-<!-- <link rel="stylesheet" href="css/bootstrap-theme.css" /> -->
-<link rel="stylesheet/css" type="text/css" href="css/style.css" />
-<link rel="stylesheet/css" type="text/css" href="css/loading-bar.css" />
-<link rel="stylesheet/css" type="text/css" href="css/select.css" />  
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
-<link rel="stylesheet" href="http://fk.github.io/select2-bootstrap-css/css/select2-bootstrap.css">
-<link rel="stylesheet" href="css/styles.css" /> 
-<!-- <link rel="stylesheet/less" type="text/css" href="less/bootstrap.less" /> -->
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/loading-bar.css" />
+<link rel="stylesheet" href="css/select.css" />  
+<link rel="stylesheet" href="css/ngToast.css" />
+<link rel="stylesheet" href="css/splash.css" />
+<!-- <link rel="stylesheet" href="css/styles.css" /> -->
+<link rel="stylesheet/less" type="text/css" href="less/styles.less" />
 <style>
 body {
 	padding-top: 60px;
-}
-
-.splash {
-	display: none;
-}
- 
-[ng-cloak].splash {
-	display: block !important;
-}
-		
-.splash {
-  position: absolute;
-	top: 0;
-	left: 0;
-	height:100%;
-	width:100%;	
-	background: #729eed;
-}
- 
-.splash h2 {
-	text-align: center;
-	font-size: 1em;
-	color:white;			
 }
 </style>
 <title>AutoServicos</title>
@@ -44,10 +19,8 @@ body {
 
 <body>
 
-	<div class="splash" ng-cloak="">
-	  <h2>Carregando Auto Serviços...</h2>
-	</div>	
-
+	<div class="splash" ng-cloak=""><h2>Carregando Auto Serviços...</h2></div>	
+	<ng-toast></ng-toast>
 	<div ui-view="header"></div>
 
 	<div class="container-fluid">
@@ -55,7 +28,7 @@ body {
 			<div ui-view="content"></div>
 	</div>
 
-	<script src="js/lib/less.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/lib/less.js" type="text/javascript" charset="utf-8"></script>	
 	<script data-main="js/main" src="js/lib/require.js"></script>
 </body>
 </html>

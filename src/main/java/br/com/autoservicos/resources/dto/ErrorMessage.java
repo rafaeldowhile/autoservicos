@@ -2,9 +2,7 @@ package br.com.autoservicos.resources.dto;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.databind.deser.std.ThrowableDeserializer;
-
-public class ErrorMessage extends ThrowableDeserializer implements Serializable {
+public class ErrorMessage implements Serializable {
 	
 	/**
 	 * 
@@ -14,7 +12,6 @@ public class ErrorMessage extends ThrowableDeserializer implements Serializable 
 	private String mensagemErro;
 	
 	public ErrorMessage() {
-		super(null);
 	}
 	
 	public String getCodigo() {

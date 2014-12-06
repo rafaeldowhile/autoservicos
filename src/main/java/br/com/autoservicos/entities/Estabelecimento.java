@@ -45,8 +45,8 @@ public class Estabelecimento implements Serializable {
 	@Column(name = "email")
 	private String email;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "estabelecimento_servico", joinColumns = { @JoinColumn(name = "id_estabelecimento") }, inverseJoinColumns = { @JoinColumn(name = "id_servico") })
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "estabelecimento_servico", joinColumns = { @JoinColumn(name = "id_estabelecimento") }, inverseJoinColumns = { @JoinColumn(name = "id_servico", updatable = false) })
 	private List<Servico> servicos;
 
 	@JsonIgnore

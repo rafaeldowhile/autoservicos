@@ -29,7 +29,7 @@ public class UsuarioRest {
 	@RequestMapping(value="/estabelecimentos", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@Transactional
-	public List<Estabelecimento> estabelecimentos(HttpServletRequest req) {
+	public List<Estabelecimento> estabelecimentos(HttpServletRequest req) throws Exception {
 		List<Estabelecimento> estabelecimentos = estabelecimentoRepo.findByUsuarioId(getUser().getId());
 		
 		return estabelecimentos;
@@ -44,11 +44,11 @@ public class UsuarioRest {
 		
 	}
 	
-	public SecurityUser getUser() {
+	public SecurityUser getUser() throws Exception {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Object principal = authentication.getPrincipal();
 		if (principal instanceof String && ((String) principal).equals("anonymousUser")) {
-//			throw new WebApplicationException(401);
+			throw new Exception("Usuário inválido");
 		}
 		SecurityUser userDetails = (SecurityUser) principal;
 
