@@ -72,6 +72,10 @@ define(['app/components/controllers',
 	  $scope.estabelecimento = estabelecimento;
 	  $scope.servicos = servicos;
 	  
+	  if (!$scope.estabelecimento.servicos) {
+		  $scope.estabelecimento.servicos = [];
+	  }
+	  
 	  $scope.servico = {};
 	  $scope.adicionar = function() {
 		  var estabelecimento = {id: $scope.servico.selected.id, nome: $scope.servico.selected.nome};

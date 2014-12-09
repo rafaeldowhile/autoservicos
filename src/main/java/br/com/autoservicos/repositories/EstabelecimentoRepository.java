@@ -17,4 +17,7 @@ public interface EstabelecimentoRepository extends JpaRepository<Estabelecimento
 	
 	@Query("select e from Estabelecimento e left join fetch e.servicos left join fetch e.endereco where e.id = ?1")
 	public Estabelecimento buscarInformacoesCadastrais(Long id);
+
+	@Query("select distinct e from Estabelecimento e left join fetch e.servicos s where e.id in (select r.id from Estabelecimento r left join r.servicos w where w.id in (?1) )")
+	public List<Estabelecimento> findQuery(List<Long> servicos);
 }

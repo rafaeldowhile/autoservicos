@@ -17,12 +17,27 @@ define(['app/components/controllers',
     	  estabelecimentos: ['Restangular', function (Restangular) {
     		 return Restangular.one('public').getList('estabelecimento'); 
     	  }],
+    	  servicos: ['Restangular', function (Restangular) {
+    		 return Restangular.one('public').getList('servico');
+    	  }]
       }
     });
   }]);
 
-  controllers.controller('PrincipalCtrl', ['$scope', 'Restangular', 'estabelecimentos', function ($scope, Restangular, estabelecimentos) {
+  controllers.controller('PrincipalCtrl', ['$scope', 'Restangular', 'estabelecimentos', 'servicos', function ($scope, Restangular, estabelecimentos, servicos) {
 	  $scope.estabelecimentos = estabelecimentos;
+	  $scope.filtro = {};
+	  $scope.servicos = servicos;
+	  $scope.pesquisar = function () {
+		  var lista = [];
+	      angular.forEach($scope.filtro.servicos, function (obj) {
+			  this.push(obj.id);
+		  }, lista);
+		  Restangular.one('public').getList('estabelecimento', {servicos: lista.toString()}).then(function (estabelecimentos) {
+			  $scope.estabelecimentos = estabelecimentos;
+		  });
+	  };
+	  
   }]);
 
 });

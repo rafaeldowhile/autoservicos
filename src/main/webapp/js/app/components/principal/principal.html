@@ -1,15 +1,21 @@
 <div class="container-fluid">
 	<div class="row-fluid">
-		<div class="panel panel-default">
+		<div class="panel panel-default panel-pesquisa">
 			<div class="panel-heading text-center">
 				<h3 class="panel-title">Bem-vindo ao Auto Serviços! Qual serviço você procura?</h3>
 			</div>
 			<div class="panel-body">
 				<div class="row">
 					<div class="input-group col-md-6 col-md-offset-3">
-						<input ng-model="filtro.texto" type="text" class="form-control">
+					<ui-select multiple ng-model="filtro.servicos" theme="bootstrap" close-on-select="false" style="width: 100%">
+						<ui-select-match placeholder="Selecione os serviços...">{{$item.nome}}</ui-select-match>
+					    <ui-select-choices repeat="servico in servicos | filter:$select.search"  refresh="refreshServicos($select.search)">
+					      {{servico.nome}}
+						</ui-select-choices>
+					</ui-select>
+<!-- 						<input ng-model="filtro.texto" type="text" class="form-control"> -->
 						<span class="input-group-btn">
-							<button class="btn btn-default" type="button">Pesquisar!</button>
+							<button class="btn btn-default" type="button" ng-click="pesquisar()">Pesquisar!</button>
 						</span>
 					</div>
 				</div>
@@ -30,16 +36,18 @@
 		    </div>
 			<div class="col-lg-10">
 				<div ng-repeat="estabelecimento in estabelecimentos" class="col-lg-4">
-					<div class="panel panel-default">
-					<div class="panel-heading text-center">
-						<a ui-sref="root.principal.visualizar({id: estabelecimento.id})"><h4>{{estabelecimento.nome}}</h4></a>
-					</div>
-					<div class="panel-body">
-					<ul class="list-group text-center" style="height: 150px; overflow-y: scroll;">
-						<li ng-repeat="servico in estabelecimento.servicos" class="list-group-item">{{servico.nome}}</li>
+					<div class="panel">
+					<ul class="list-group text-center">
+						<a ui-sref="root.principal.visualizar({id: estabelecimento.id})" class="list-group-item active">
+							<h5>{{estabelecimento.nome}}</h5>
+						</a>
+						<span style="border: 1px solid transparent;">
+							<small>Especialidades</small>
+						</span>
+						<div style="height: 120px;overflow-y: scroll;">
+							<a ng-repeat="servico in estabelecimento.servicos" class="list-group-item" href="">{{servico.nome}}</a>
+						</div>
 					</ul>
-					</div>
-					<div class="panel-footer">
 					<button ui-sref="root.principal.visualizar({id: estabelecimento.id})" type="button" class="btn btn-default btn-block">Visualizar</button>
 					</div>
 					</div>

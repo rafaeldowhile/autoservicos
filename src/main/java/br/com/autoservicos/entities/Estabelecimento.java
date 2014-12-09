@@ -57,6 +57,9 @@ public class Estabelecimento implements Serializable {
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_endereco", insertable = true, updatable = true)
 	private Endereco endereco;
+	
+	@Column(name = "site")
+	private String site;
 
 	public Long getId() {
 		return id;
@@ -120,6 +123,14 @@ public class Estabelecimento implements Serializable {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+
+	public String getSite() {
+		return site;
+	}
+
+	public void setSite(String site) {
+		this.site = site;
 	}
 
 }
