@@ -64,11 +64,10 @@ define(['app/components/controllers',
 		    	  }]
 		      }
 		    });
-		    
 		  };
   }]);
   
-  controllers.controller('EstabelecimentoDetalheCtrl', ['$scope', 'Restangular', 'estabelecimento', 'servicos', '$state', function ($scope, Restangular, estabelecimento, servicos, $state) {
+  controllers.controller('EstabelecimentoDetalheCtrl', ['$scope', 'Restangular', 'estabelecimento', 'servicos', '$state', 'ngToast', function ($scope, Restangular, estabelecimento, servicos, $state, ngToast) {
 	  $scope.estabelecimento = estabelecimento;
 	  $scope.servicos = servicos;
 	  
@@ -93,14 +92,22 @@ define(['app/components/controllers',
 				  $state.transitionTo('root.estabelecimento', null, {reload: true});
 			  });			  
 		  }
+		  ngToast.create({
+				 content: 'Estabelecimento criado.',
+				 class: 'success'
+			  });
 	  };
   }]);
 
-  controllers.controller('EstabelecimentoDeletarCtrl', ['$scope', '$state', '$modalInstance', 'estabelecimento', function ($scope, $state, $modalInstance, estabelecimento) {
+  controllers.controller('EstabelecimentoDeletarCtrl', ['$scope', '$state', '$modalInstance', 'estabelecimento', 'ngToast', function ($scope, $state, $modalInstance, estabelecimento, ngToast) {
 	
 	  $scope.confirmar = function () {
 		  estabelecimento.remove().then(function() {
 			  $state.forceReload();
+			  ngToast.create({
+				 content: 'Estabelecimento deletado com sucesso.',
+				 class: 'danger'
+			  });
 		  });
 		  
 		  $state.forceReload();

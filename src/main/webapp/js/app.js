@@ -2,6 +2,7 @@ define([ 'angular',
          'text!app/shared/layout/layout.html',
          'text!app/shared/header/header.html',
          'text!app/shared/sidebar/sidebar.html',
+         'text!app/shared/footer/footer.html',
          'angular-local-storage',
          'angular-animate',
          'angular-sanitize',
@@ -29,7 +30,7 @@ define([ 'angular',
 		 'app/components/principal/principal-ctrl',
 		 'app/components/principal/principal-visualizar-ctrl',
 
-], function(angular, templateLayout, templateHeader, templateSidebar) {
+], function(angular, templateLayout, templateHeader, templateSidebar, templateFooter) {
 	'use strict';
 	var app = angular.module('autoservicos',['ui.router', 'ui.bootstrap', 'ui.bootstrap.tabs', 'ui.mask', 'ui.select', 
                                          	'restangular', 'LocalStorageModule', 'chieffancypants.loadingBar', 
@@ -59,6 +60,7 @@ define([ 'angular',
 			views: {
 				'header': {template: templateHeader},
 				'sidebar': {template: templateSidebar},
+				'footer': {template: templateFooter}
 			}
 		});
 
