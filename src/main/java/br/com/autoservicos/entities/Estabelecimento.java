@@ -60,6 +60,9 @@ public class Estabelecimento implements Serializable {
 	
 	@Column(name = "site")
 	private String site;
+	
+	@Column(name = "resumo")
+	private String resumo;
 
 	public Long getId() {
 		return id;
@@ -131,6 +134,14 @@ public class Estabelecimento implements Serializable {
 
 	public void setSite(String site) {
 		this.site = site;
+	}
+
+	public String getResumo() {
+		return resumo;
+	}
+
+	public void setResumo(String resumo) {
+		this.resumo = resumo;
 	}
 
 }

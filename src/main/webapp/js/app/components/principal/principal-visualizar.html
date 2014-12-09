@@ -1,15 +1,15 @@
 <div class="container">
-
-	<div class="row">
-		<div class="page-header">
-			<h3>{{estabelecimento.nome}}</h3>
-		</div>
-	</div>
-	<div class="row">
-		<div class="pull-right">
+<!-- <div class="row"> -->
+		<div class="pull-right" style="margin-top: 45px;">
 			<a ui-sref="root.principal" ui-sref-opts="{reload: false}" class="btn btn-default">Voltar</a>
 		</div>
+<!-- 	</div> -->
+	<div class="row">
+		<div class="page-header">
+			<h3><img src="img/a.jpg">  {{estabelecimento.nome}} </h3>
+		</div>
 	</div>
+	
 	<div class="row">
 		<div class="col-md-4">
 			<fieldset>
@@ -19,52 +19,54 @@
 				</ul>
 			</fieldset>
 		</div>
-		<div class="col-md-4">
-			<fieldset>
-				<legend>Contato</legend>
-				<div class="form-group">
-				<label for="telefone1" class="col-md-3 control-label" style="text-align: right;">Telefone: </label>
-				<div class="col-md-9">
-					<p id="telefone1"><small>{{estabelecimento.telefone1 | phone}}</small></p>
-				</div>
-				</div>
-				<label for="telefone2" class="col-md-3 control-label" style="text-align: right;">Telefone: </label>
-				<div class="col-md-9">
-					<p id="telefone2"><small>{{estabelecimento.telefone2 | phone}}</small></p>
-				</div>
-				<div class="form-group">
-					<label for="email" class="col-md-3 control-label" style="text-align: right;">E-mail: </label>
+		<div class="col-md-8">
+			<div class="col-md-12">
+				<fieldset>
+					<legend>Resumo da empresa</legend>
+					<p>{{estabelecimento.resumo}}</p>
+				</fieldset>
+				<br/>
+				<br/>
+			</div>
+			<div class="col-md-6">
+				<fieldset>
+					<legend>Contato</legend>
+					<div class="form-group">
+					<label for="telefone1" class="col-md-3 control-label" style="text-align: right;">Telefone: </label>
 					<div class="col-md-9">
-						<p id="email"><small>{{estabelecimento.email}}</small></p>
+						<p id="telefone1"><small>{{estabelecimento.telefone1 | phone}}</small></p>
 					</div>
-				</div>
-			</fieldset>
-		</div>
-		<div class="col-md-4">
-			<fieldset>
-				<legend>Localização</legend>
-				<p><small>
-					{{estabelecimento.endereco.logradouro}} - {{estabelecimento.endereco.numero}} {{estabelecimento.endereco.complemento}}
-				</small></p>
-				<p><small>
-					{{estabelecimento.endereco.bairro}} - {{estabelecimento.endereco.cidade}}
-				</small></p> 
-			</fieldset>		
+					</div>
+					<label for="telefone2" class="col-md-3 control-label" style="text-align: right;">Telefone: </label>
+					<div class="col-md-9">
+						<p id="telefone2"><small>{{estabelecimento.telefone2 | phone}}</small></p>
+					</div>
+					<div class="form-group">
+						<label for="email" class="col-md-3 control-label" style="text-align: right;">E-mail: </label>
+						<div class="col-md-9">
+							<p id="email"><small>{{estabelecimento.email}}</small></p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="site" class="col-md-3 control-label" style="text-align: right;">Site: </label>
+						<div class="col-md-9">
+							<a href="http://{{estabelecimento.site}}" target="_blank"><small>{{estabelecimento.site}}</small></a>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+			<div class="col-md-6">
+				<fieldset>
+					<legend>Localização</legend>
+					<p><small>
+						{{estabelecimento.endereco.logradouro}} - {{estabelecimento.endereco.numero}} {{estabelecimento.endereco.complemento}}
+					</small></p>
+					<p><small>
+						{{estabelecimento.endereco.bairro}} - {{estabelecimento.endereco.cidade}}
+					</small></p> 
+				</fieldset>		
+			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="panel panel-default">
-			<div class="panel-heading text-center">
-				<h3 class="panel-title">Que somos</h3>
-			</div>
-			<div class="panel-body">
-				<div class="row">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultricies mi sem, quis ullamcorper ex laoreet sed. Integer magna ligula, maximus eget imperdiet quis, dignissim nec dui. Cras rhoncus purus neque, dictum ultrices elit porta et. Morbi nec enim et lorem volutpat fermentum in vel elit. Nullam vitae lacinia purus, ac semper lectus. Integer ut quam risus. Etiam efficitur nisl magna, id malesuada lorem congue feugiat. Pellentesque ligula justo, hendrerit sit amet felis sed, semper aliquam arcu. Cras ultrices tristique quam, ut viverra lacus tempor nec. Nam posuere id augue vel pharetra. Cras scelerisque, dolor vel molestie varius, nunc nisl imperdiet quam, nec sollicitudin leo eros ac massa. Pellentesque commodo enim quis dui eleifend laoreet eu quis lectus. Phasellus nec viverra sem. In rhoncus nulla libero, et elementum lacus porttitor id.
-
-				</p>
-				</div>
-			</div>
-		</div>
-	</div>	
 </div>
 

@@ -13,10 +13,9 @@
 					      {{servico.nome}}
 						</ui-select-choices>
 					</ui-select>
-<!-- 						<input ng-model="filtro.texto" type="text" class="form-control"> -->
-						<span class="input-group-btn">
-							<button class="btn btn-default" type="button" ng-click="pesquisar()">Pesquisar!</button>
-						</span>
+					<span class="input-group-btn">
+						<button class="btn btn-xs btn-default" type="button" ng-click="pesquisar()">Pesquisar!</button>
+					</span>
 					</div>
 				</div>
 			</div>
@@ -26,24 +25,25 @@
 
 	<div class="row-fluid">
 		<div class="container">
-		    <div class="col-lg-2">
-				<div class="nav nav-pills nav-stacked" style="border: 1px solid #F1F1F1; border-radius: 4px;">
-				 	<li role="presentation"><a href="#">Elétrica</a></li>
-				 	<li role="presentation"><a href="#">Som</a></li>
-					<li role="presentation"><a href="#">Mecânica</a></li>
-					<li role="presentation"><a href="#">Lavagem</a></li>
-				</div>		    
-		    </div>
-			<div class="col-lg-10">
+<!-- 		    <div class="col-lg-2"> -->
+<!-- 				<div class="nav nav-pills nav-stacked" style="border: 1px solid #F1F1F1; border-radius: 4px;"> -->
+<!-- 				 	<li role="presentation"><a href="#">Elétrica</a></li> -->
+<!-- 				 	<li role="presentation"><a href="#">Som</a></li> -->
+<!-- 					<li role="presentation"><a href="#">Mecânica</a></li> -->
+<!-- 					<li role="presentation"><a href="#">Lavagem</a></li> -->
+<!-- 				</div>		     -->
+<!-- 		    </div> -->
+			<div class="col-lg-12">
 				<div ng-repeat="estabelecimento in estabelecimentos" class="col-lg-4">
 					<div class="panel">
 					<ul class="list-group text-center">
 						<a ui-sref="root.principal.visualizar({id: estabelecimento.id})" class="list-group-item active">
 							<h5>{{estabelecimento.nome}}</h5>
 						</a>
-						<span style="border: 1px solid transparent;">
-							<small>Especialidades</small>
-						</span>
+						<img src="img/a.jpg" alt="{{estabelecimento.nome}}">
+<!-- 						<span style="border: 1px solid transparent;"> -->
+<!-- 							<small>Especialidades</small> -->
+<!-- 						</span> -->
 						<div style="height: 120px;overflow-y: scroll;">
 							<a ng-repeat="servico in estabelecimento.servicos" class="list-group-item" href="">{{servico.nome}}</a>
 						</div>
