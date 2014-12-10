@@ -39,7 +39,7 @@ public class UsuarioRest {
 	@RequestMapping(value="/estabelecimentos/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public Estabelecimento estabelecimento(@PathVariable Long id, HttpServletRequest req) {
-		Estabelecimento estabelecimento = estabelecimentoRepo.buscarInformacoesCadastrais(id);
+		Estabelecimento estabelecimento = estabelecimentoRepo.buscarPublicInformacoesCadastrais(id);
 		return estabelecimento;
 		
 	}

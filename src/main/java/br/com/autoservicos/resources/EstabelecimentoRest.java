@@ -3,7 +3,6 @@ package br.com.autoservicos.resources;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,7 +57,7 @@ public class EstabelecimentoRest extends BaseRest {
 	@ResponseBody
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Estabelecimento buscar(@PathVariable("id") Long id) {
-		Estabelecimento estabelecimento = estabelecimentoRepo.buscarInformacoesCadastrais(id);
+		Estabelecimento estabelecimento = estabelecimentoRepo.buscarInformacoesCadastrais(id, getUser().getId());
 		return estabelecimento;
 	}
 	

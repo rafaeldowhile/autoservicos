@@ -37,7 +37,7 @@ public class PublicRest {
 	@RequestMapping(value = "/estabelecimento/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public Estabelecimento buscar(@PathVariable("id") Long id) {
-		return estabelecimentoRepo.buscarInformacoesCadastrais(id);
+		return estabelecimentoRepo.buscarPublicInformacoesCadastrais(id);
 	}
 	
 	@RequestMapping(value = "/servico", produces = MediaType.APPLICATION_JSON_VALUE)
