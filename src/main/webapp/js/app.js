@@ -17,11 +17,16 @@ define([ 'angular',
          'ui-select',
          'PhoneNumber',
 
+         'app/shared/directives',
+         'app/shared/directives/checklist-model',
+         
          'app/shared/filters',
          'app/shared/filters/phone',
-		 'app/components/controllers',
-		 'app/components/services',
+         
+         'app/components/services',
 		 'app/components/auth/auth-service',
+         
+		 'app/components/controllers',
 		 'app/components/auth/login-ctrl',
 		 'app/components/auth/signin-ctrl',
 		 'app/components/auth/logout-ctrl',
@@ -35,7 +40,7 @@ define([ 'angular',
 	var app = angular.module('autoservicos',['ui.router', 'ui.bootstrap', 'ui.bootstrap.tabs', 'ui.mask', 'ui.select', 
                                          	'restangular', 'LocalStorageModule', 'chieffancypants.loadingBar', 
                                          	'ngAnimate', 'ngSanitize', 'ngToast', 'autoservicos.controllers', 
-                                         	'autoservicos.services', 'autoservicos.filters']);
+                                         	'autoservicos.services', 'autoservicos.filters', 'autoservicos.directives']);
 
 	app.constant('appConfiguration', {
 		xAuthTokenHeaderName: 'X-Auth-Token'

@@ -23,7 +23,6 @@
 					Dados Gerais
 				</tab-heading>
 				<br/>
-				<br/>	
 				<div class="row">
 						<fieldset>
 							<legend>Dados Estabelecimento</legend>
@@ -99,7 +98,7 @@
 							<div class="form-group">
 								<label for="resumo" class="col-lg-2 control-label">Resumo</label>
 								<div class="col-lg-6">
-									<textarea rows="4" ng-model="estabelecimento.resumo" id="resumo" type="text" class="form-control"></textarea>
+									<textarea rows="4" ng-model="estabelecimento.resumo" id="resumo" type="text" class="form-control" maxlength="255"></textarea>
 								</div>
 							</div>
 						</fieldset>
@@ -141,7 +140,52 @@
 				  	</fieldset>
 			  	</div>
 			</tab>
-			
+			<tab>
+				<tab-heading>
+					Formas de Pagamento
+				</tab-heading>
+				
+				<br/>
+				
+				<div class="row">
+					<div class="col-lg-4">
+						<div class="panel panel-primary">
+							<div class="panel-heading">Crédito</div>
+							<div class="panel-body">
+						    	<div class="checkbox" ng-repeat="fp in formasPagamento | filter: fp.tipo = 'credito'">
+						    		<label>
+							  			<input type="checkbox" checklist-model="estabelecimento.listaFormaPagamento" checklist-value="fp"> {{fp.nome}}
+							  		</label>
+								</div>
+						  	</div>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="panel panel-primary">
+							<div class="panel-heading">Débito</div>
+							<div class="panel-body">
+						    	<div class="checkbox" ng-repeat="fp in formasPagamento | filter: fp.tipo = 'debito'">
+						    		<label>
+							  			<input type="checkbox" checklist-model="estabelecimento.listaFormaPagamento" checklist-value="fp"> {{fp.nome}}
+							  		</label>
+								</div>
+						  	</div>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="panel panel-primary">
+							<div class="panel-heading">Outros</div>
+							<div class="panel-body">
+						    	<div class="checkbox" ng-repeat="fp in formasPagamento | filter: fp.tipo = 'outros'">
+						    		<label>
+							  			<input type="checkbox" checklist-model="estabelecimento.listaFormaPagamento" checklist-value="fp"> {{fp.nome}}
+							  		</label>
+								</div>
+						  	</div>
+						</div>
+					</div>
+				</div>
+			</tab>
 		</tabset>
 		<br/>
 		<br/>

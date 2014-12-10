@@ -41,9 +41,18 @@ define(['app/components/controllers',
     	  }],
     	  
     	  servicos: ['Restangular', function(Restangular) {
-    		  return angular.forEach(Restangular.all('servico').getList(), function(value) {
-    			  console.log(value);
+    		  return Restangular.all('servico').getList();
+    	  }],
+    	  
+    	  formasPagamento: ['Restangular', function(Restangular) {
+    		  var lista = [];
+    		  Restangular.one('estabelecimento').getList('forma-pagamento').then(function(fps) {
+    			  angular.forEach(fps, function(obj) {
+    				  var fp = { id: obj.id, nome: obj.nome, tipo: obj.tipo };
+    				  this.push(fp);
+    			  }, lista);
     		  });
+    		  return lista; 
     	  }]
       }
     });
@@ -67,9 +76,11 @@ define(['app/components/controllers',
 		  };
   }]);
   
-  controllers.controller('EstabelecimentoDetalheCtrl', ['$scope', 'Restangular', 'estabelecimento', 'servicos', '$state', 'ngToast', function ($scope, Restangular, estabelecimento, servicos, $state, ngToast) {
+  controllers.controller('EstabelecimentoDetalheCtrl', ['$scope', 'Restangular', 'estabelecimento', 'servicos', 'formasPagamento', '$state', 'ngToast', 
+                                                        function ($scope, Restangular, estabelecimento, servicos, formasPagamento, $state, ngToast) {
 	  $scope.estabelecimento = estabelecimento;
 	  $scope.servicos = servicos;
+	  $scope.formasPagamento = formasPagamento;
 	  
 	  if (!$scope.estabelecimento.servicos) {
 		  $scope.estabelecimento.servicos = [];
@@ -86,16 +97,21 @@ define(['app/components/controllers',
 		  if (!estabelecimento.id) {
 			  estabelecimento.post().then(function(estabelecimento){
 				  $state.transitionTo('root.estabelecimento', null, {reload: true});
-			  });  
+				  ngToast.create({
+						 content: 'Estabelecimento criado.',
+						 class: 'success'
+					  });
+			  });
 		  } else {
 			  estabelecimento.put().then(function(){
 				  $state.transitionTo('root.estabelecimento', null, {reload: true});
-			  });			  
-		  }
-		  ngToast.create({
-				 content: 'Estabelecimento criado.',
-				 class: 'success'
+				  ngToast.create({
+						 content: 'Estabelecimento atualizado.',
+						 class: 'success'
+					  });
 			  });
+		  }
+		  
 	  };
   }]);
 

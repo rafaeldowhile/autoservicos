@@ -12,7 +12,7 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li ng-if="user.isAuthenticated"><p class="navbar-text">Olá, {{user.nome}}</p></li>
+				<li ng-if="user.isAuthenticated"><a ui-sref="root.home">Olá, {{user.nome}}</a></li>
 				<li ng-if="!user.isAuthenticated"><a ui-sref="root.signin">Apareça aqui!</a></li>
 				<li ng-if="!user.isAuthenticated"><a ui-sref="root.login">Entrar</a></li>
 				<li ng-if="user.isAuthenticated" ><a ui-sref="root.logout">Sair</a></li>

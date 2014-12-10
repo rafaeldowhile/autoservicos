@@ -1,7 +1,7 @@
 package br.com.autoservicos.entities;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -47,22 +47,26 @@ public class Estabelecimento implements Serializable {
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "estabelecimento_servico", joinColumns = { @JoinColumn(name = "id_estabelecimento") }, inverseJoinColumns = { @JoinColumn(name = "id_servico", updatable = false) })
-	private List<Servico> servicos;
+	private Set<Servico> servicos;
 
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
-	
+
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_endereco", insertable = true, updatable = true)
 	private Endereco endereco;
-	
+
 	@Column(name = "site")
 	private String site;
-	
+
 	@Column(name = "resumo")
 	private String resumo;
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "estab_forma_pagamento", joinColumns = { @JoinColumn(name = "id_estabelecimento") }, inverseJoinColumns = { @JoinColumn(name = "id_forma_pagamento", updatable = false) })
+	private Set<FormaPagamento> listaFormaPagamento;
 
 	public Long getId() {
 		return id;
@@ -104,11 +108,11 @@ public class Estabelecimento implements Serializable {
 		this.email = email;
 	}
 
-	public List<Servico> getServicos() {
+	public Set<Servico> getServicos() {
 		return servicos;
 	}
 
-	public void setServicos(List<Servico> servicos) {
+	public void setServicos(Set<Servico> servicos) {
 		this.servicos = servicos;
 	}
 
@@ -142,6 +146,14 @@ public class Estabelecimento implements Serializable {
 
 	public void setResumo(String resumo) {
 		this.resumo = resumo;
+	}
+
+	public Set<FormaPagamento> getListaFormaPagamento() {
+		return listaFormaPagamento;
+	}
+
+	public void setListaFormaPagamento(Set<FormaPagamento> listaFormaPagamento) {
+		this.listaFormaPagamento = listaFormaPagamento;
 	}
 
 }
