@@ -4,7 +4,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="css/loading-bar.css" />
 <link rel="stylesheet" href="css/style.css" />
-<link rel="stylesheet" href="css/select.css" />  
+<link rel="stylesheet" href="css/select.css" />
 <link rel="stylesheet" href="css/ngToast.css" />
 <link rel="stylesheet" href="css/splash.css" />
 <!-- <link rel="stylesheet" href="css/styles.css" /> -->
@@ -19,17 +19,35 @@ body {
 
 <body>
 
-	<div class="splash" ng-cloak=""><h2>Carregando Auto Serviços...</h2></div>	
+	<div class="splash" ng-cloak="">
+		<h2>Carregando Auto Serviços...</h2>
+	</div>
 	<ng-toast></ng-toast>
 	<div ui-view="header"></div>
 
 	<div class="container-fluid">
-			<div ui-view="sidebar"></div>
-			<div ui-view="content"></div>
+		<div ui-view="sidebar"></div>
+		<div ui-view="content"></div>
 	</div>
-	
-<!-- 	<div ui-view="footer"></div> -->
-	<script src="js/lib/less.js" type="text/javascript" charset="utf-8"></script>	
+
+	<!-- 	<div ui-view="footer"></div> -->
+	<script>
+		(function(i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r;
+			i[r] = i[r] || function() {
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date();
+			a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+			a.async = 1;
+			a.src = g;
+			m.parentNode.insertBefore(a, m)
+		})(window, document, 'script',
+				'//www.google-analytics.com/analytics.js', 'ga');
+
+		ga('create', 'UA-56277272-2', 'auto');
+		ga('send', 'pageview');
+	</script>
+	<script src="js/lib/less.js" type="text/javascript" charset="utf-8"></script>
 	<script data-main="js/main" src="js/lib/require.js"></script>
 </body>
 </html>
